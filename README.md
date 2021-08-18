@@ -9,7 +9,7 @@ https://api.telegram.org/bot<token>/setWebhook?url=https://site.ru/telegram/<tok
 ### Install
 Use module with aki/yii2-bot-telegram
 ```bash
-$ php composer.phar require grozzzny/telegram "dev-master"
+$ php composer.phar require grozzzny/telegram "dev-main"
 ```
 
 ### Set log
