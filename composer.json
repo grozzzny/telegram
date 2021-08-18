@@ -14,6 +14,7 @@
     ],
     "require": {
         "php": ">=5.6.0",
+        "vendor/package3": "^2.0.3",
         "aki/yii2-bot-telegram": "*"
     },
     "autoload": {
