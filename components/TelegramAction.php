@@ -30,11 +30,11 @@ class TelegramAction extends Action
 
     private $_detect = true;
 
-    public function actionStart($param = null)
+    public function commandStart($param = null)
     {
         Yii::$app->telegram->sendMessage([
             'chat_id' => $this->update->message->chat->id,
-            'text' => Yii::$app->i18n->format('Hello! {0}!', [$this->update->message->from->first_name], 'en-US'),
+            'text' => strtr('Hello! {name}!', ['{name}' => $this->update->message->from->first_name]),
         ]);
     }
 

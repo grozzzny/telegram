@@ -41,7 +41,7 @@ class ExampleAction extends \grozzzny\telegram\components\TelegramAction
     }
 
     # /run
-    public function commandRun($param)
+    public function commandRun($param = null)
     {
         $chat_id = $this->update->message->chat->id;
 
