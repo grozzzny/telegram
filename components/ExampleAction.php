@@ -4,11 +4,6 @@
 namespace grozzzny\telegram\components;
 
 
-use app\components\telegram\traits\PreferencesTrait;
-use app\models\User;
-//use app\modules\league\models\PlayerGroupRelations;
-//use app\modules\league\models\PreferencePlayers;
-//use app\modules\league\models\Schedule;
 use Yii;
 
 class ExampleAction extends \grozzzny\telegram\components\TelegramAction
