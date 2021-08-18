@@ -14,7 +14,7 @@
     ],
     "require": {
         "php": ">=5.6.0",
-        "aki/yii2-bot-telegram": "*"
+        "aki/yii2-bot-telegram": "v3.0.4"
     },
     "autoload": {
         "psr-4": {
