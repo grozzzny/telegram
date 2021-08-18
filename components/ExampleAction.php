@@ -1,56 +1,16 @@
-# Telegram module
-Telegram module for yii2
+<?php
 
-### Set Webhook
-```
-https://api.telegram.org/bot<token>/setWebhook?url=https://site.ru/telegram/<token>
-```
 
-### Install
-Use module with aki/yii2-bot-telegram
-```bash
-$ php composer.phar require grozzzny/telegram "dev-master"
-```
+namespace grozzzny\telegram\components;
 
-### Set log
-```php
-'log' => [
-  'targets' => [
-      [
-           'class' => 'yii\log\FileTarget',
-           'levels' => ['info'],
-           'categories' => ['telegram'],
-           'logFile' => '@app/runtime/logs/telegram.log'
-      ],
-  ],
-],
-```
 
-### Add module
-```php
-'telegram' => [
-     'class' => 'grozzzny\telegram\TelegramModule',
-     'controllerMap' => [
-         'default' => [
-             'class'  => 'grozzzny\telegram\controllers\DefaultController',
-             'classAction' => 'grozzzny\telegram\components\ExampleAction'
-         ]
-     ]
-],
-```
-### Add component
-```php
- 'telegram' => [
-     'class' => 'grozzzny\telegram\components\Telegram',
-     'botToken' => '',
- ],
-```
-### Add route:
-```php
-'telegram/<token:[^\/]+>' => 'telegram/default/index',
-```
-### Use action:
-```php
+use app\components\telegram\traits\PreferencesTrait;
+use app\models\User;
+//use app\modules\league\models\PlayerGroupRelations;
+//use app\modules\league\models\PreferencePlayers;
+//use app\modules\league\models\Schedule;
+use Yii;
+
 class ExampleAction extends \grozzzny\telegram\components\TelegramAction
 {
     # Write to log file
@@ -124,4 +84,3 @@ class ExampleAction extends \grozzzny\telegram\components\TelegramAction
         ]);
     }
 }
-```
