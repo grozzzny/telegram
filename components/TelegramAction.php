@@ -38,7 +38,7 @@ class TelegramAction extends Action
                 'text' => strtr('Hello! {name}!', ['{name}' => $this->update->message->from->first_name]),
             ]);
 
-            $this->saveTrace($response);
+            $this->saveTrace($response->description);
         } catch (\Exception $exception){
             $this->saveTrace($exception->getMessage());
         }
