@@ -49,6 +49,9 @@ $ php composer.phar require grozzzny/telegram "dev-main"
 ```php
 'telegram/<token:[^\/]+>' => 'telegram/default/index',
 ```
+
+![alt text](https://raw.githubusercontent.com/grozzzny/telegram/main/2021-08-18_13-51.png)
+            
 ### Use action:
 ```php
 class ExampleAction extends \grozzzny\telegram\components\TelegramAction
