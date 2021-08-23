@@ -192,7 +192,7 @@ class TelegramAction extends Action
 
     public function saveTrace($data)
     {
-        if($this->trace) Yii::info($data, 'telegram');
+        Yii::$app->telegram->saveTrace($data);
     }
 
     protected function existsSession($chat_id)
