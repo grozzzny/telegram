@@ -74,12 +74,13 @@ class TelegramAction extends Action
 
     public function detectBotCommand()
     {
+        $this->saveTrace(['detectBotCommand' => $this->update]);
+
         if (empty($this->update->message)) return false;
 
         if(empty($this->update->message->entities)) return false;
 
         foreach ($this->update->message->entities as $entity){
-            $this->saveTrace(['detectBotCommand' => $this->update]);
             if($entity->type == MessageEntity::TYPE_BOT_COMMAND) {
                 $command = explode(' ', $this->update->message->text);
                 $action = ucfirst(substr(array_shift($command), 1));
