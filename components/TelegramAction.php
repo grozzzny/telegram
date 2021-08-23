@@ -74,8 +74,6 @@ class TelegramAction extends Action
 
     public function detectBotCommand()
     {
-        $this->saveTrace(['detectBotCommand' => $this->update]);
-
         if (empty($this->update->message)) return false;
 
         if(empty($this->update->message->entities)) return false;
@@ -218,7 +216,7 @@ class TelegramAction extends Action
 
     public function traceWebhook()
     {
-        $this->saveTrace(Yii::$app->request->rawBody);
+        $this->saveTrace(['webhook' => Yii::$app->request->rawBody]);
     }
 
     public function saveTrace($data)
