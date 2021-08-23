@@ -16,9 +16,18 @@ use yii\web\NotFoundHttpException;
  * @package grozzzny\telegram\components
  *
  * @property-read Cache $cache
+ * @property-read boolean $isChatTypePrivate
+ * @property-read boolean $isChatTypeGroup
+ * @property-read boolean $isChatTypeSupergroup
+ * @property-read boolean $isChatTypeChannel
  */
 class TelegramAction extends Action
 {
+    const CHAT_TYPE_PRIVATE = 'private';
+    const CHAT_TYPE_GROUP = 'group';
+    const CHAT_TYPE_SUPERGROUP = 'supergroup';
+    const CHAT_TYPE_CHANNEL = 'channel';
+
     public $data;
 
     public $duration_answer = 86400;
@@ -31,21 +40,20 @@ class TelegramAction extends Action
 
     public function commandStart($param = null)
     {
-        try {
-            $response = Yii::$app->telegram->sendMessage([
+        if(!$this->isChatTypePrivate){
+            return Yii::$app->telegram->sendMessage([
                 'chat_id' => $this->update->message->chat->id,
-                'text' => strtr('Hello! {name}! Your ID: {id_user}', [
-                    '{name}' => $this->update->message->from->first_name,
-                    '{id_user}' => $this->update->message->from->id,
-                ]),
+                'text' => 'Sorry! Command only private!',
             ]);
-
-            if(!$response->ok) {
-                $this->saveTrace([$response->error_code => $response->description]);
-            }
-        } catch (\Exception $exception){
-            $this->saveTrace($exception->getMessage());
         }
+
+        Yii::$app->telegram->sendMessage([
+            'chat_id' => $this->update->message->chat->id,
+            'text' => strtr('Hello! {name}! Your ID: {id_user}', [
+                '{name}' => $this->update->message->from->first_name,
+                '{id_user}' => $this->update->message->from->id,
+            ]),
+        ]);
     }
 
     public function run($token)
@@ -89,6 +97,26 @@ class TelegramAction extends Action
                 break;
             }
         }
+    }
+
+    public function getIsChatTypePrivate()
+    {
+        return $this->update->message->chat->type == self::CHAT_TYPE_PRIVATE;
+    }
+
+    public function getIsChatTypeGroup()
+    {
+        return $this->update->message->chat->type == self::CHAT_TYPE_GROUP;
+    }
+
+    public function getIsChatTypeSupergroup()
+    {
+        return $this->update->message->chat->type == self::CHAT_TYPE_SUPERGROUP;
+    }
+
+    public function getIsChatTypeChannel()
+    {
+        return $this->update->message->chat->type == self::CHAT_TYPE_CHANNEL;
     }
 
     public function commandNotFound()
