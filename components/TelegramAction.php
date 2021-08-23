@@ -34,7 +34,10 @@ class TelegramAction extends Action
         try {
             $response = Yii::$app->telegram->sendMessage([
                 'chat_id' => $this->update->message->chat->id,
-                'text' => strtr('Hello! {name}!', ['{name}' => $this->update->message->from->first_name]),
+                'text' => strtr('Hello! {name}! Your ID: {id_user}', [
+                    '{name}' => $this->update->message->from->first_name,
+                    '{id_user}' => $this->update->message->from->id,
+                ]),
             ]);
 
             if(!$response->ok) {
