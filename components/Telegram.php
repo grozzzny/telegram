@@ -8,6 +8,7 @@ use Yii;
 
 class Telegram extends \aki\telegram\Telegram
 {
+    # Write to log file
     public $trace = false;
 
     public function send($method, $params = null)

@@ -8,9 +8,6 @@ use Yii;
 
 class ExampleAction extends \grozzzny\telegram\components\TelegramAction
 {
-    # Write to log file
-    public $trace = true;
-
     public function bind()
     {
         parent::bind();

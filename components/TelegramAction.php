@@ -23,7 +23,6 @@ class TelegramAction extends Action
 
     public $duration_answer = 86400;
     public $name_cache_component = 'cache';
-    public $trace = false;
 
     /** @var Update */
     public $update;

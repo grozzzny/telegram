@@ -43,6 +43,7 @@ $ php composer.phar require grozzzny/telegram "dev-main"
  'telegram' => [
      'class' => 'grozzzny\telegram\components\Telegram',
      'botToken' => '',
+     'trace' => false
  ],
 ```
 ### Add route:
@@ -55,9 +56,6 @@ $ php composer.phar require grozzzny/telegram "dev-main"
 ```php
 class ExampleAction extends \grozzzny\telegram\components\TelegramAction
 {
-    # Write to log file
-    public $trace = true;
-
     public function bind()
     {
         parent::bind();
