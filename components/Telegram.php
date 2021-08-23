@@ -15,9 +15,11 @@ class Telegram extends \aki\telegram\Telegram
     {
         $body = parent::send($method, $params);
         $this->saveTrace([
-            'method' => $method,
-            'params' => $params,
-            'response' => $body,
+            'response' => [
+                'method' => $method,
+                'params' => $params,
+                'body' => $body,
+            ]
         ]);
         return $body;
     }
